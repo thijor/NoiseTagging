@@ -1,0 +1,21 @@
+
+[DataSources]
+eeg = 'buffer://localhost:1973:cognionics_dryeegheadband|rjv_downsample';
+%eeg = 'simulate:cognionics_dryeegheadband|rjv_downsample';
+ 
+[eeg]
+Cap = 'nt_cap8.txt';
+
+[ClassifierVars]
+delay = .04; % Cogniomics has a lag of 40ms
+
+[cognionics_dryeegheadband]
+startFunction   = '';
+Cap             = 'nt_cap8.txt';
+Device          = '/dev/cu.usbserial-A1Z9AQ72';
+ 
+[ExperimentDefinitionVars]
+TYPEMARKER = 'stimulus';
+
+[stim]
+startFunction = 'init_sndCognionicsMarker';

@@ -1,0 +1,22 @@
+[DataSources]
+eeg = 'buffer://localhost:1972:emotiv_epoc|rjv_downsample';
+%eeg = 'simulate:emotiv_epoc|rjv_downsample';
+ 
+[eeg]
+Cap = 'nt_cap_emotiv_epoc.txt';
+pp.downsample.targetFs = 120;      % Target sample frequency
+ 
+[DataprocVars]
+MarkerType = 'software';   % Use of hardware or software marker
+ 
+[ClassifierVars]
+delay = .15; % Emotiv has a lag of 150ms
+ 
+[ExperimentDefinitionVars]
+TYPEMARKER = 'trigger';
+ 
+[emotiv_epoc]
+Cap             = 'nt_cap_emotiv_epoc.txt';
+startFunction   = ''; %
+stopFunction    = ''; %
+SendMarkerFcn   = ''; %

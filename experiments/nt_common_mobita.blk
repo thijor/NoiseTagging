@@ -1,0 +1,24 @@
+ 
+[DataSources]
+eeg = 'buffer://localhost:1973:tmsi_mobita|rjv_downsample';
+%eeg = 'simulate:tmsi_mobita|rjv_downsample';
+ 
+[eeg]
+Cap = 'nt_cap32.txt';
+ 
+[ClassifierVars]
+Delay = .05; % Mobita has a lag of 50ms
+ 
+[tmsi_mobita]
+Cap             = 'nt_cap32.txt';
+SendMarkerFnc   = 'sndMidiMarker';
+ 
+[ExperimentDefinitionVars]
+TYPEMARKER = 'trigger';
+ 
+[Midi]
+Comp2Comp       = 'iRig MIDI 2';
+Comp2Hardware   = 'iRig MIDI 2';
+ 
+[stim]
+StartFunction   = 'init_sndMidiMarker';

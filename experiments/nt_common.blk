@@ -1,0 +1,88 @@
+ 
+[eeg]
+Cap                     = 'nt_cap64.txt';  % Cap file with labels and positions
+pp.downsample.targetFs  = 360;          % Target sample frequency
+pp.filter.family        = 'bpf';        % Family of spectral filter
+pp.filter.type          = 'fir';        % Type of spectral filter
+pp.filter.order         = 1024;         % Order of spectral filter
+pp.filter.passband      = [2 48];       % Pass-band of spectral filter
+pp.MatlabPathAdd        = { bs_folder('reference'), bs_folder('resources'), fullfile(home_root,'bci_code','toolboxes','rjv_realtime_preproc'), fullfile(home_root,'bci_code','toolboxes','numerical_tools'), fullfile(home_root,'bci_code','toolboxes','signal_processing'), fullfile(home_root,'bci_code','toolboxes','utilities','general'), fullfile(plugins_folder,'CapMontage'), fullfile(home_root,'bci_code','own_experiments','visual','noise_tagging','jt_box')};
+
+[Clients]
+stim = 'localhost';
+ 
+[stim]
+MatlabPathAdd = { fullfile(home_root,'bci_code','toolboxes','utilities','general')};
+ 
+[RunMode]
+Parallel=1;
+VerbosityLevel = 'ERROR';
+ 
+[ExperimentDefinitionVars]
+TYPEMARKER          = 'stimulus';   % Dictionary marker type
+InitializeTime      = '2';          % Initialization time (sec)
+PreTrialTime        = '1';          % Pre trial time (sec)
+TrialTime           = '4.2';        % Trial time (sec)
+SegmentTime         = '0.1';        % Segment time (sec)
+PostTrialTime       = '1';          % Post trial time (sec)
+InterTrialTime      = '0';          % Inter trial interval (sec)
+TerminateTime       = '0';          % Time to close the application (sec)
+MaxTrials           = '30';         % Maximum number of trials in experiment (#)
+MaxTime             = 'Inf';        % Maximum time of experiment (sum of actual trialtime) (sec)
+ 
+[StimulationVars]
+OutputDevice        = 'monitor';            % Output device
+StimulationRate     = 60;                   % Stimulation rate/bit rate
+Synchronous         = true;                 % Synchronous stimulation
+NumTrainClasses     = 36;                   % Number of classes for training
+TrainCodes          = 'mgold_61_6521.mat';  % Code file for training
+TrainSubset         = 'no';                 % Code subset type for training
+TrainLayout         = 'no';                 % Code layout type for training
+NumTestClasses      = 36;                   % Number of classes for testing
+TestCodes           = 'mgold_65_6532.mat';  % Code file for testing
+TestSubset          = 'clustering';         % Code subset type for testing
+TestLayout          = 'incremental';        % Code layout type for testing
+ 
+[DataprocVars]
+DataMarker          = 'datamarker'; % Data marker
+DataSource          = 'eeg';        % Data source
+MarkerType          = 'hardware';   % Use of hardware or software marker
+Rereference         = 'car';        % Re-referencing method
+FilterBands         = {[2 48]};     % Spectral filter pass bands
+ChnThreshold        = 'no';         % Number of std for outlier channel
+TrlThreshold        = 'no';         % Number of std for outlier trial
+DoBufferPreproc     = false;        % Whether or not preprocessing is on the buffer
+DoRetrain           = false;        % Whether or not retraining classifier each trial
+DoSaveTrialClassifier = false;      % Whether or not to save classifiers of each trail (e.g. during zerotraining)
+ 
+[ClassifierVars]
+Verbosity           = 2;            % Verbosity level to view classifier and estimate accuracy
+Method              = 'fwd';        % Classification method: fix, fwd, bwd
+Supervised          = 'yes';        % Supervised
+RunCorrelation      = 'no';         % Running correlations
+Cca                 = 'cov';        % Method for CCA
+L                   = .2;           % Length of events in seconds
+Delay               = 0;            % Delay of markers in seconds
+Event               = 'duration';   % Method to extract events
+Component           = 1;            % CCA component to select
+LambdaX             = .9;           % Penalty on Wx, filter
+LambdaY             = 'tukey';      % Penalty on Wy, transient responses
+LambdaXAmp          = 0.1;			% amplifier for lx regularization penalties, i.e., maximum penalty (1)
+LambdaYAmp          = 0.01; 		% amplifier for ly regularization penalties, i.e., maximum penalty (1)
+LambdaYPerc         = 0.2; 			% relative parts of the taper that is regularized (.2)
+ModelOnset          = 'no';         % Whether or not to model onset of stimulation
+Neighbours          = [6 6];        % Neighbour matrix
+Stopping            = 'margin';     % Stopping method: margin, beta
+ForceStop           = 'yes';        % Force stop during stopping
+Accuracy            = .95;          % Stopping targeted accuracy
+Bound               = 'ML';         % Beta model bound: LB, ML, UB
+ShiftTime           = 1/30;         % Asyncrhonous shift time/lag
+ShiftTimeMax        = 1.05;         % Asynchronous maximum shift
+TransferModel       = 'no';         % Whether or not to use transfer-learning
+TransferFile        = 'nt_model_chn64_ev144.mat';
+TransferCount       = 0;            % Weight on transfer-learning model
+CovFilter           = Inf;          % Covariance high-pass filter
+FirstAccuracy 		= [];			% Targeted stopping accuracy for first unsupervised trial
+FirstMinSegment		= [];			% Minimum number of segments for first unsupervised trial
+PreInvert           = 'no';         % Whether or not to pre-compute inverse of structure matrices
+FreshCalibration    = 'yes';        % Start ith a fresh classifier

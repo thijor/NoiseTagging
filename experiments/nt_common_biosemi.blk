@@ -1,0 +1,11 @@
+ 
+[DataSources]
+eeg = 'buffer://localhost:1972:biosemi_active2|rjv_downsample';
+%eeg = 'simulate:biosemi_active2|rjv_downsample';
+ 
+[eeg]
+Cap = 'nt_cap64.txt';
+ 
+[biosemi_active2]
+Cap = 'nt_cap64.txt';
+SampleFrequency = 512;
