@@ -1,6 +1,10 @@
 # NoiseTagging
 
-This repository is a snapshot of the Noise-Tagging project as carried out at the Radboud University, Nijmegen, the Netherlands. It involves a brain computer interface (BCI) that utilizes code-modulated visual evoked potentials (cVEP) to decoding what a user is attending to (e.g., in a visual matrix speller) from brain activity. The code in this repository belong directly to the research article as listed below.
+This repository contains the Matlab utilities as used in the Noise-Tagging project as carried out at the Radboud University, Nijmegen, the Netherlands. It involves a brain computer interface (BCI) that uses the code-modulated visual evoked potential (cVEP) to decode what a user is attending to (e.g., in a visual matrix speller) from brain activity (i.e., EEG). The Matlab code in this repository belong directly to the research article as listed below.
+
+# Disclaimer
+
+Please note that this repository is not maintained anymore, because the research has been continued using a Python implementation, see the PyntBCI library: https://github.com/thijor/pyntbci
 
 # References 
 
